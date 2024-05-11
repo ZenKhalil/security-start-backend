@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user-with-role")
 public class UserWithRoleController {
 
-  UserWithRolesService userWithRolesService;
+  final UserWithRolesService userWithRolesService;
 
   public UserWithRoleController(UserWithRolesService userWithRolesService) {
     this.userWithRolesService = userWithRolesService;
@@ -21,7 +21,7 @@ public class UserWithRoleController {
   //Anonymous users can call this.
   @PostMapping
   @Operation(summary = "Add a new UserWithRoles user",
-             description = "If a default role is defined (app.default-role ), this role will be assigned to the user.")
+          description = "If a default role is defined (app.default-role ), this role will be assigned to the user.")
   public UserWithRolesResponse addUserWithRoles(@RequestBody UserWithRolesRequest request) {
     return userWithRolesService.addUserWithRoles(request);
   }
